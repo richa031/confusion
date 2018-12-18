@@ -2,21 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardTitle, CardBody} from 'reactstrap';
 
 class Dishdetail extends Component{
-    /*constructor(props){
-        super(props);
-        this.state = {//properties related to the component that we can make use of
-            selectedDish: null,
-            selectedDish: {
-                comments: null
-            }
-        }
-    }*/
-   /* onDishSelect(dish) {
-        this.setState({selectedDish: dish});
-        this.setState({...this.state, selectedDish:{
-            comments: dish.comments
-        }});
-    }*/
+    
     renderComments(comments){
         if(comments==null){
             return(<div></div>);

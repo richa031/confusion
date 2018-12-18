@@ -21,25 +21,6 @@ class Menu extends Component{//adding menu component
         });
     }
 
-    /*renderDish(dish){
-        if(dish!=null){
-            return(
-                <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            );
-
-        }else{
-            return(
-                <div></div>
-            );
-        }
-    }*/
-
     render(){//will return what to display on UI
         const menu = this.props.dishes.map((dish) => {//to use state(dishes) of App component here as props
             return(
@@ -61,7 +42,6 @@ class Menu extends Component{//adding menu component
                     {menu}
                 </div>
                 <div className="row">
-                    {/*this.renderDish(this.state.selectedDish)  dish={this.props.dishes} comments={this.props.comments*/}
                     <Dishdetail dish={this.state.selectedDish} />
                 </div>
             </div>
