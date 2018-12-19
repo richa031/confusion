@@ -1,25 +1,23 @@
 //menu of dishes(component)
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardTitle, CardBody} from 'reactstrap';
 
-
-class Menu extends Component{//adding menu component
-    constructor(props){//defining constructor
-        super(props);
+    function RenderMenuItem({ dish, onClick }){
+        return(
+            <Card onClick={() => onClick(dish.id)}>
+                <CardImg width="100%" src={dish.image} alt={dish.name} />
+                <CardImgOverlay>
+                <CardTitle>{dish.name}</CardTitle>
+                </CardImgOverlay>
+            </Card>
+        );
     }
 
-    
-
-    render(){//will return what to display on UI
-        const menu = this.props.dishes.map((dish) => {//to use state(dishes) of App component here as props
+    const Menu = (props) => {
+        const menu = props.dishes.map((dish) => {//to use state(dishes) of App component here as props
             return(
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <Card onClick={() => this.props.onClick(dish.id)}>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
-                        <CardImgOverlay>
-                            <CardTitle>{dish.name}</CardTitle>
-                        </CardImgOverlay>
-                    </Card>
+                    <RenderMenuItem dish={dish} onClick={props.onClick} />
                 </div>
             );
             
@@ -34,7 +32,6 @@ class Menu extends Component{//adding menu component
                 </div>
             </div>
         );
+    
     }
-}
-
 export default Menu;//we can import this wherever we want
