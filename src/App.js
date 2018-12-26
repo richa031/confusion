@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
 
+
 const store = ConfigureStore();//react store is available to all the components
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
         <BrowserRouter>
             <div className="App">
               <Main />
+              
             </div>
         </BrowserRouter>
       </Provider>
