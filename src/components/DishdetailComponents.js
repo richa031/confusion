@@ -40,10 +40,10 @@ export class CommentForm extends Component{
                     <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                         <ModalHeader toggle={this.toggleModal}> Submit comment</ModalHeader>
                         <ModalBody>
-                            <div className="col-12 col-md-9">
+                            <div className="col-12">
                                 <LocalForm onSubmit={(values) => this.handleSubmit(values)} >
                                     <Row className="form-group">
-                                        <Label htmlFor="rating">Rating</Label>
+                                        <Label htmlFor="rating" md={2}>Rating</Label>
                                         <Col md={10}>
                                             <Control.select model=".rating" name="rating" className="form-control" >
                                                 <option>1</option>
