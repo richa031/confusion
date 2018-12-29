@@ -1,7 +1,4 @@
 //reducer function to set up all the states
-
-
-import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
 
