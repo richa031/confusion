@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardTitle, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 
     function RenderMenuItem({ dish, onClick }){
         return(
@@ -17,7 +18,7 @@ import { Link } from 'react-router-dom';
     }
 
     const Menu = (props) => {
-        const menu = props.dishes.map((dish) => {//to use state(dishes) of App component here as props
+        const menu = props.dishes.dishes.map((dish) => {//to use state(dishes) of App component here as props
             return(
                 <div key={dish.id} className="col-12 col-md-5 m-1">
                     <RenderMenuItem dish={dish} />
@@ -26,6 +27,27 @@ import { Link } from 'react-router-dom';
             
         });
 
+        if(props.dishes.isLoading){
+            return(
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+                );
+        }
+        else if(props.dishes.errMess){
+            return(
+                <div className="container">
+                   <div className="row">
+                        <div className="col-12">
+                            <h4>{props.dishes.errMess}</h4>
+                        </div>
+                   </div>
+               </div>
+           );
+        }
+    else
         return(
             <div className="container">
                 <div className="row">
@@ -43,10 +65,8 @@ import { Link } from 'react-router-dom';
                 <div className="row">
                     {menu}
                 </div>
-                <div className="row">
-                </div>
+                <div className="row"></div>
             </div>
         );
-    
     }
 export default Menu;//we can import this wherever we want
