@@ -4,6 +4,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardTitle, CardBody, Breadcrum
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
+import { baseURL } from '../shared/baseURL';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -113,7 +114,7 @@ export class CommentForm extends Component{
             return (
                 <div className="col-12 col-md-5 offset-md-1 mt-5 ">
                     <Card>
-                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                        <CardImg width="100%" src={baseURL+ dish.image} alt={dish.name} />
                         <CardBody>
                             <CardTitle>{ dish.name }</CardTitle>
                             <CardText>{ dish.description }</CardText>
@@ -128,7 +129,7 @@ export class CommentForm extends Component{
     }
 
     const Dishdetail = (props) => {
-         const dish = props.dish;
+        
          if(props.isLoading){
              return(
                 <div className="container">
@@ -147,7 +148,7 @@ export class CommentForm extends Component{
                 </div>
              );
          }
-         else if(dish==null){
+         else if(props.dish==null){
             return(<div></div>)
         }
         
