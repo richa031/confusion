@@ -1,61 +1,55 @@
-//menu of dishes(component)
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardTitle, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-import {baseURL} from '../shared/baseURL';
+import { baseURL } from '../shared/baseURL';
 
-    function RenderMenuItem({ dish, onClick }){
-        return(
-            <Card>
-                <Link to={`/menu/${dish.id}`}>
-                    <CardImg width="100%" src={baseURL+ dish.image} alt={dish.name} />
-                    <CardImgOverlay>
-                        <CardTitle>{dish.name}</CardTitle>
-                    </CardImgOverlay>
-                </Link>
-            </Card>
+function RenderMenuItem({ dish, onClick }) {
+    return (
+        <Card>
+            <Link to={`/menu/${dish.id}`} >
+                <CardImg width="100%" src={baseURL + dish.image} alt={dish.name} />
+                <CardImgOverlay>
+                    <CardTitle>{dish.name}</CardTitle>
+                </CardImgOverlay>
+            </Link>
+        </Card>
+    );
+}
+
+const Menu = props => {
+    const menu = props.dishes.dishes.map(dish => {
+        return (
+            <div key={dish.id} className="col-12 col-md-5 m-1">
+                <RenderMenuItem dish={dish} />
+            </div>
+        )
+    });
+
+    if (props.dishes.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
         );
     }
-
-    const Menu = (props) => {
-        const menu = props.dishes.dishes.map((dish) => {//to use state(dishes) of App component here as props
-            return(
-                <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <RenderMenuItem dish={dish} />
+    else if (props.dishes.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.dishes.errMess}</h4>
                 </div>
-            );
-            
-        });
-
-        if(props.dishes.isLoading){
-            return(
-                <div className="container">
-                    <div className="row">
-                        <Loading />
-                    </div>
-                </div>
-                );
-        }
-        else if(props.dishes.errMess){
-            return(
-                <div className="container">
-                   <div className="row">
-                        <div className="col-12">
-                            <h4>{props.dishes.errMess}</h4>
-                        </div>
-                   </div>
-               </div>
-           );
-        }
+            </div>
+        );
+    }
     else
-        return(
+        return (
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
-                        <BreadcrumbItem>
-                            <Link to='/home'>Home</Link>
-                        </BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Menu</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
@@ -66,8 +60,8 @@ import {baseURL} from '../shared/baseURL';
                 <div className="row">
                     {menu}
                 </div>
-                <div className="row"></div>
             </div>
         );
-    }
-export default Menu;//we can import this wherever we want
+}
+
+export default Menu;
